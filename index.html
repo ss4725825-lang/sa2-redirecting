@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to the SA2 | Sudden Attack 2 community portal. Access the main website">
+    
+    <!-- ВАЖНО ДЛЯ SEO: Замените URL ниже на реальный адрес вашей страницы -->
+    <link rel="canonical" href="https://ss4725825-lang.github.io/sa2-redirecting/" />
+
     <title>SA2 | Sudden Attack 2 - Redirecting...</title>
     <style>
         body {
@@ -20,7 +24,6 @@
             text-align: center;
         }
 
-        /* Добавлен margin-top: 0, чтобы h1 выглядел точно так же, как прошлый div */
         .message { 
             font-size: 24px; 
             font-weight: bold; 
@@ -30,7 +33,7 @@
         
         .hint-text {
             font-size: 15px;
-            color: #b0b0b0;
+            color: #b0b0b0; /* Этот цвет проходит проверку контрастности */
             margin-bottom: 20px;
             max-width: 500px;
             line-height: 1.5;
@@ -38,7 +41,7 @@
 
         .seo-description {
             font-size: 17px;
-            color: #6c757d;
+            color: #9ca3af; /* ИЗМЕНЕНО: Сделал серый чуть светлее для контрастности */
             max-width: 600px;
             margin-bottom: 30px;
             padding: 0 20px;
@@ -57,13 +60,13 @@
 
         .btn-green {
             background-color: transparent; 
-            color: #198754; 
+            color: #38c172; /* ИЗМЕНЕНО: Сделал зеленый светлее, чтобы он читался на темном фоне */
             text-decoration: none;
             width: 350px; 
             height: 48px;
             border-radius: 6px;
             font-size: 16px;
-            border: 1px solid #1e8f4d; 
+            border: 1px solid #38c172; /* ИЗМЕНЕНО: Соответствует тексту */
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -78,7 +81,7 @@
         .btn-green:hover {
             background-color: #1e8f4d; 
             color: #ffffff; 
-            border-color: #198754; 
+            border-color: #1e8f4d; 
             box-shadow: 0 0 0 0px transparent; 
         }
 
@@ -101,11 +104,10 @@
             background-color: #1a1b1f;
             padding: 15px 0;
             font-size: 11px;
-            color: #6c757d;
+            color: #9ca3af; /* ИЗМЕНЕНО: Сделал серый чуть светлее для контрастности */
             line-height: 1.4;
         }
         
-        /* Сброс стилей для тега main, чтобы он не ломал Flexbox */
         main {
             display: flex;
             flex-direction: column;
@@ -115,9 +117,7 @@
 </head>
 <body>
 
-    <!-- 1. Обернули основной контент в тег <main> -->
     <main>
-        <!-- 2. Изменили <div> на <h1> для правильной структуры заголовков -->
         <h1 class="message">
             SA2 | Sudden Attack 2
         </h1>
@@ -134,14 +134,13 @@
             Redirecting to sa2.wohlnet.ru
         </div>
 
-        <!-- 3. Добавили aria-label="..." для решения проблемы с неописательной ссылкой "Click here" -->
         <a href="https://sa2.wohlnet.ru/" class="btn-green" aria-label="Go to the main SA2 website">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            <!-- ИЗМЕНЕНО: Добавил aria-hidden="true" чтобы не путать ридеры -->
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
             Click here
         </a>
     </main>
 
-    <!-- 4. Изменили <div> на семантический тег <footer> -->
     <footer class="footer-bar">
         This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
         This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
