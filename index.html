@@ -4,7 +4,7 @@
     <meta name="google-site-verification" content="qnEuoMXhfTr1uCziImTfTLsfWi92TbIwpawnUi3jEZE" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="10;url=https://sa2.wohlnet.ru/">
+    <meta name="description" content="Community portal and access link for the SA2 project.">
     <title>SA2 | Sudden Attack 2 Redirecting...</title>
     <style>
         body {
@@ -27,6 +27,7 @@
             color: #b0b0b0;
             margin-bottom: 20px;
             max-width: 500px;
+            line-height: 1.4;
         }
 
         .btn-info {
@@ -40,6 +41,7 @@
             cursor: default;
         }
 
+        /* Полностью ваш оригинальный стиль кнопки */
         .btn-green {
             background-color: transparent; 
             color: #1e8f4d;
@@ -50,8 +52,9 @@
             font-weight: bold;
             border: 1px solid #1e8f4d;
             transition: all 0.2s ease;
-            display: flex;
+            display: inline-flex; /* Изменил на inline-flex для страховки от пропадания */
             align-items: center;
+            justify-content: center;
             gap: 8px;
             margin-bottom: 20px;
         }
@@ -61,7 +64,11 @@
             color: white;
         }
 
-        .btn-green svg { width: 18px; height: 18px; fill: currentColor; }
+        .btn-green svg { 
+            width: 18px; 
+            height: 18px; 
+            fill: currentColor; /* Вернул вашу заливку */
+        }
 
         .footer-bar {
             position: fixed;
@@ -78,37 +85,28 @@
 <body>
 
     <div class="message">
-        You will be redirected to the game site in <span id="countdown">10</span> seconds...
+        Welcome to the SA2 Page
     </div>
 
-    <!-- Текст-подсказка -->
     <div class="hint-text">
-        If the redirection does not happen automatically or you are tired of waiting, please click the button below.
+        To access the site, click the "Click here" button, and you will be redirected to the main page.
     </div>
 
     <div class="btn-info">
         Redirecting to sa2.wohlnet.ru
     </div>
 
+    <!-- Ваша оригинальная иконка и текст -->
     <a href="https://sa2.wohlnet.ru/" class="btn-green">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
         Click here
     </a>
 
     <div class="footer-bar">
-        This site serves as a search engine alternative after Nexon decided to remove the site from Google search results.<br>
+        This is a fan-maintained portal. Not affiliated with any official corporate entities.
+Provided for community purposes.<br>
         This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
     </div>
 
-    <script>
-        let timeLeft = 10;
-        const countdownElement = document.getElementById('countdown');
-        setInterval(() => {
-            if (timeLeft > 0) {
-                timeLeft--;
-                countdownElement.textContent = timeLeft;
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
