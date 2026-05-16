@@ -8,31 +8,107 @@
     <title>SA2 | Sudden Attack 2 - Redirecting...</title>
     <style>
         body {
-            background-color: #222327; 
-            color: #ffffff;
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', sans-serif;
+            background-color: #1a1a1c;
+            color: #ffffff;
+            overflow: hidden; /* Убираем скролл, так как это страница редиректа */
+        }
+
+        /* =========================================
+           ЗАБЛЮРЕННЫЙ ФОН (Имитация основного сайта)
+           ========================================= */
+        .blurred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            filter: blur(12px); /* Сила размытия фона */
+            opacity: 0.7; /* Немного затемняем сам фон */
+            pointer-events: none; /* Чтобы фон не кликался */
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Фейковый навбар */
+        .mock-navbar {
+            width: 100%;
+            height: 60px;
+            background-color: #212529;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
+        }
+        .mock-nav-links { display: flex; gap: 20px; color: #aaa; font-size: 14px; margin-left: 30px; }
+        .mock-btn-red { background-color: #dc3545; color: white; padding: 8px 15px; border-radius: 4px; margin-left: auto; }
+
+        /* Фейковый главный блок */
+        .mock-hero {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .mock-logo {
+            font-size: 80px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .mock-play-btn {
+            background-color: #ffc107;
+            width: 300px;
+            height: 50px;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+
+        /* Фейковый текст "About the game" */
+        .mock-content {
+            width: 800px;
+            margin-top: 60px;
+            text-align: left;
+        }
+        .mock-title { font-size: 30px; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 20px; }
+        .mock-text { font-size: 18px; color: #ccc; line-height: 1.6; }
+
+
+        /* =========================================
+           ПЕРЕДНИЙ ПЛАН (Твой код редиректа)
+           ========================================= */
+        .foreground-content {
+            position: relative;
+            z-index: 10; /* Поверх заблюренного фона */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             text-align: center;
+            /* Полупрозрачная подложка, чтобы текст хорошо читался на фоне блюра */
+            background-color: rgba(34, 35, 39, 0.75); 
         }
 
-        .message { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        .message { font-size: 28px; font-weight: bold; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
         .hint-text {
-            font-size: 15px;
-            color: #b0b0b0;
-            margin-bottom: 20px;
+            font-size: 16px;
+            color: #d0d0d0;
+            margin-bottom: 25px;
             max-width: 500px;
             line-height: 1.5;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
         .seo-description {
             font-size: 12px;
-            color: #666;
+            color: #888;
             max-width: 600px;
             margin-bottom: 30px;
             padding: 0 20px;
@@ -45,55 +121,50 @@
             border-radius: 4px;
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             cursor: default;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* 1. ОБЫЧНОЕ СОСТОЯНИЕ */
+        /* Кнопка из твоего кода */
         .btn-green {
-            background-color: transparent; 
-            color: #198754; /* Зелёный текст из твоего оригинала */
+            background-color: rgba(0, 0, 0, 0.5); /* Немного темного фона для читаемости */
+            color: #198754; 
             text-decoration: none;
             width: 350px; 
-            height: 48px;
+            height: 52px;
             border-radius: 6px;
             font-size: 16px;
             
-            border: 1px solid #1e8f4d; /* Обычная тонкая рамка */
+            border: 2px solid #1e8f4d; 
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 20px;
             box-sizing: border-box;
             cursor: pointer;
-            
-            /* Секрет анимации: изначально тень равна 0px (спрятана под кнопкой) */
             box-shadow: 0 0 0 0px transparent;
-            /* Плавная анимация всего (цвета, фона и выталкивания тени) */
             transition: all 0.15s ease-out; 
+            backdrop-filter: blur(5px);
         }
         
-        /* 2. ПРИ НАВЕДЕНИИ (Плавная заливка) */
         .btn-green:hover {
-            background-color: #1e8f4d; /* Заливается основным зелёным */
+            background-color: #1e8f4d; 
             color: #ffffff; 
-            border-color: #198754; /* Рамка сливается с фоном */
-            box-shadow: 0 0 0 0px transparent; /* Тень всё ещё спрятана */
+            border-color: #198754; 
+            box-shadow: 0 0 0 0px transparent; 
         }
 
-        /* 3. ПРИ НАЖАТИИ (Анимация "выталкивания") */
         .btn-green:active {
             background-color: #198754; 
             color: #ffffff;
-            /* ПРАВИЛЬНЫЙ ЦВЕТ: Насыщенный тёмно-зелёный, как на скрине */
-            /* Тень за 0.15 сек увеличивается от 0 до 5px, создавая эффект выталкивания */
-            box-shadow: 0 0 0 5px #1d553d; 
+            box-shadow: 0 0 0 5px rgba(29, 85, 61, 0.8); 
         }
 
         .btn-green svg { 
-            width: 18px; 
-            height: 18px; 
+            width: 20px; 
+            height: 20px; 
             fill: currentColor; 
         }
 
@@ -101,36 +172,70 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            background-color: #1a1a1a;
+            background-color: rgba(26, 26, 26, 0.9);
             padding: 15px 0;
             font-size: 11px;
-            color: #555;
+            color: #777;
             line-height: 1.4;
+            text-align: center;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
-    <div class="message">
-        SA2 | Sudden Attack 2
+    <!-- ЗАБЛЮРЕННЫЙ ФОН (Имитация дизайна твоего сайта) -->
+    <div class="blurred-background">
+        <div class="mock-navbar">
+            <div style="font-weight: bold; font-size: 20px;">SA2</div>
+            <div class="mock-nav-links">
+                <span>Download the game</span>
+                <span>Updates</span>
+                <span>Wiki</span>
+                <span>Other projects</span>
+            </div>
+            <div class="mock-btn-red">Register</div>
+        </div>
+        
+        <div class="mock-hero">
+            <div class="mock-logo">
+    <img src="big_logo.png" alt="Логотип">
+</div>
+            <div class="mock-play-btn"></div>
+        </div>
+
+        <div class="mock-content">
+            <div class="mock-title">About the game</div>
+            <div class="mock-text">
+                Sudden Attack 2 is a free-to-play multiplayer first-person shooter game developed by Nexon GT as a sequel to the original Sudden Attack.<br><br>
+                It runs on Unreal Engine 3 and provides satisfying visuals even for today's standards. The game also features weapons customization system, few playable game modes.
+            </div>
+        </div>
     </div>
 
-    <div class="seo-description">
-        Welcome to the website for SA2. This page serves as a gateway to our main website. Sudden Attack 2, and this community-driven network provides access to website.
-    </div>
+    <!-- ОСНОВНОЙ КОНТЕНТ (Твоя страница редиректа) -->
+    <div class="foreground-content">
+        <div class="message">
+            SA2 | Sudden Attack 2
+        </div>
 
-    <div class="hint-text">
-        To access the site, click the "Click here" button, and you will be redirected to the main page.
-    </div>
+        <div class="seo-description">
+            Welcome to the website for SA2. This page serves as a gateway to our main website. Sudden Attack 2, and this community-driven network provides access to website.
+        </div>
 
-    <div class="btn-info">
-        Redirecting to sa2.wohlnet.ru
-    </div>
+        <div class="hint-text">
+            To access the site, click the "Click here" button, and you will be redirected to the main page.
+        </div>
 
-    <a href="https://sa2.wohlnet.ru/" class="btn-green">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-        Click here
-    </a>
+        <div class="btn-info">
+            Redirecting to sa2.wohlnet.ru
+        </div>
+
+        <a href="https://sa2.wohlnet.ru/" class="btn-green">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            Click here
+        </a>
+    </div>
 
     <div class="footer-bar">
         This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
