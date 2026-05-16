@@ -49,26 +49,46 @@
             cursor: default;
         }
 
+        /* 1. ОБЫЧНОЕ СОСТОЯНИЕ */
         .btn-green {
             background-color: transparent; 
-            color: #1e8f4d;
+            color: #198754; /* Зелёный текст из твоего оригинала */
             text-decoration: none;
-            padding: 8px 25px;
-            border-radius: 4px;
+            width: 350px; 
+            height: 48px;
+            border-radius: 6px;
             font-size: 16px;
-            font-weight: bold;
-            border: 1px solid #1e8f4d;
-            transition: all 0.2s ease;
+            
+            border: 1px solid #1e8f4d; /* Обычная тонкая рамка */
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             margin-bottom: 20px;
+            box-sizing: border-box;
+            cursor: pointer;
+            
+            /* Секрет анимации: изначально тень равна 0px (спрятана под кнопкой) */
+            box-shadow: 0 0 0 0px transparent;
+            /* Плавная анимация всего (цвета, фона и выталкивания тени) */
+            transition: all 0.15s ease-out; 
         }
         
+        /* 2. ПРИ НАВЕДЕНИИ (Плавная заливка) */
         .btn-green:hover {
-            background-color: #1e8f4d;
-            color: white;
+            background-color: #1e8f4d; /* Заливается основным зелёным */
+            color: #ffffff; 
+            border-color: #198754; /* Рамка сливается с фоном */
+            box-shadow: 0 0 0 0px transparent; /* Тень всё ещё спрятана */
+        }
+
+        /* 3. ПРИ НАЖАТИИ (Анимация "выталкивания") */
+        .btn-green:active {
+            background-color: #198754; 
+            color: #ffffff;
+            /* ПРАВИЛЬНЫЙ ЦВЕТ: Насыщенный тёмно-зелёный, как на скрине */
+            /* Тень за 0.15 сек увеличивается от 0 до 5px, создавая эффект выталкивания */
+            box-shadow: 0 0 0 5px #1d553d; 
         }
 
         .btn-green svg { 
@@ -112,7 +132,6 @@
         Click here
     </a>
 
-    <!-- Обновленный безопасный текст -->
     <div class="footer-bar">
         This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
         This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
