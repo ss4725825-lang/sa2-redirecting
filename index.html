@@ -20,7 +20,13 @@
             text-align: center;
         }
 
-        .message { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        /* Добавлен margin-top: 0, чтобы h1 выглядел точно так же, как прошлый div */
+        .message { 
+            font-size: 24px; 
+            font-weight: bold; 
+            margin-top: 0; 
+            margin-bottom: 10px; 
+        }
         
         .hint-text {
             font-size: 15px;
@@ -49,17 +55,15 @@
             cursor: default;
         }
 
-        /* 1. ОБЫЧНОЕ СОСТОЯНИЕ */
         .btn-green {
             background-color: transparent; 
-            color: #198754; /* Зелёный текст из твоего оригинала */
+            color: #198754; 
             text-decoration: none;
             width: 350px; 
             height: 48px;
             border-radius: 6px;
             font-size: 16px;
-            
-            border: 1px solid #1e8f4d; /* Обычная тонкая рамка */
+            border: 1px solid #1e8f4d; 
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -67,27 +71,20 @@
             margin-bottom: 20px;
             box-sizing: border-box;
             cursor: pointer;
-            
-            /* Секрет анимации: изначально тень равна 0px (спрятана под кнопкой) */
             box-shadow: 0 0 0 0px transparent;
-            /* Плавная анимация всего (цвета, фона и выталкивания тени) */
             transition: all 0.15s ease-out; 
         }
         
-        /* 2. ПРИ НАВЕДЕНИИ (Плавная заливка) */
         .btn-green:hover {
-            background-color: #1e8f4d; /* Заливается основным зелёным */
+            background-color: #1e8f4d; 
             color: #ffffff; 
-            border-color: #198754; /* Рамка сливается с фоном */
-            box-shadow: 0 0 0 0px transparent; /* Тень всё ещё спрятана */
+            border-color: #198754; 
+            box-shadow: 0 0 0 0px transparent; 
         }
 
-        /* 3. ПРИ НАЖАТИИ (Анимация "выталкивания") */
         .btn-green:active {
             background-color: #198754; 
             color: #ffffff;
-            /* ПРАВИЛЬНЫЙ ЦВЕТ: Насыщенный тёмно-зелёный, как на скрине */
-            /* Тень за 0.15 сек увеличивается от 0 до 5px, создавая эффект выталкивания */
             box-shadow: 0 0 0 5px #1d553d; 
         }
 
@@ -107,35 +104,48 @@
             color: #6c757d;
             line-height: 1.4;
         }
+        
+        /* Сброс стилей для тега main, чтобы он не ломал Flexbox */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="message">
-        SA2 | Sudden Attack 2
-    </div>
+    <!-- 1. Обернули основной контент в тег <main> -->
+    <main>
+        <!-- 2. Изменили <div> на <h1> для правильной структуры заголовков -->
+        <h1 class="message">
+            SA2 | Sudden Attack 2
+        </h1>
 
-    <div class="seo-description">
-        Welcome to the website for SA2. This page serves as a gateway to our main website. Sudden Attack 2, and this community-driven network provides access to website.
-    </div>
+        <div class="seo-description">
+            Welcome to the website for SA2. This page serves as a gateway to our main website. Sudden Attack 2, and this community-driven network provides access to website.
+        </div>
 
-    <div class="hint-text">
-        To access the site, click the "Click here" button, and you will be redirected to the main page.
-    </div>
+        <div class="hint-text">
+            To access the site, click the "Click here" button, and you will be redirected to the main page.
+        </div>
 
-    <div class="btn-info">
-        Redirecting to sa2.wohlnet.ru
-    </div>
+        <div class="btn-info">
+            Redirecting to sa2.wohlnet.ru
+        </div>
 
-    <a href="https://sa2.wohlnet.ru/" class="btn-green">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-        Click here
-    </a>
+        <!-- 3. Добавили aria-label="..." для решения проблемы с неописательной ссылкой "Click here" -->
+        <a href="https://sa2.wohlnet.ru/" class="btn-green" aria-label="Go to the main SA2 website">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+            Click here
+        </a>
+    </main>
 
-    <div class="footer-bar">
+    <!-- 4. Изменили <div> на семантический тег <footer> -->
+    <footer class="footer-bar">
         This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
         This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
-    </div>
+    </footer>
 
 </body>
 </html>
