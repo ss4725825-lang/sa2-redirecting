@@ -1,155 +1,958 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="qnEuoMXhfTr1uCziImTfTLsfWi92TbIwpawnUi3jEZE" />
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to the SA2 | Sudden Attack 2 community portal. Access the main website">
+    <title>SA2 | Sudden Attack 2 - Full Portal</title>
     
-    <link rel="canonical" href="https://ss4725825-lang.github.io/sa2-redirecting/" />
-    
-    <!-- Подключение шрифта Roboto (стандарт для подобных сайтов) -->
+    <link rel="stylesheet" href="https://sa2.wohlnet.ru/css/aa.font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <title>SA2 | Sudden Attack 2 - Redirecting...</title>
     <style>
-        body {
-            background-color: #212227; 
-            color: #ffffff;
-            /* Применяем шрифт Roboto */
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
+        :root {
+            --bg-deep: #0a0b0d;
+            --bg-card: #16171b;
+            --accent-green: #38c172;
+            --accent-red: #dc3545;
+            --accent-yellow: #ffc107;
+            --border: rgba(56, 193, 114, 0.15);
+            --ease-ios: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .message { 
-            font-size: 24px; 
-            font-weight: bold; 
-            margin-top: 0; 
-            margin-bottom: 10px; 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-green); border-radius: 10px; }
+
+        body { background: var(--bg-deep); color: #fff; font-family: 'Roboto', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        .aura { position: fixed; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(56, 193, 114, 0.05) 0%, transparent 70%); z-index: -1; }
+
+        /* --- ABOUT SECTION ONLINE BADGE --- */
+        .about-header-flex { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px; }
+        .online-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(56, 193, 114, 0.1); border: 1px solid var(--accent-green);
+            padding: 6px 15px; border-radius: 50px; color: var(--accent-green);
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .online-badge:hover { background: rgba(56, 193, 114, 0.2); }
+        .pulse-dot {
+            width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green); animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 193, 114, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(56, 193, 114, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 193, 114, 0); }
+        }
+		
+		/* --- Window styles Other projects --- */
+.op-morph-box {
+    position: fixed; 
+    top: 12vh; 
+    left: 50%;
+    background: #16171b; /*  */
+    border: 1px solid rgba(56, 193, 114, 0.2);
+    border-radius: 20px; 
+    z-index: 2000;
+    opacity: 0; 
+    visibility: hidden;
+    transform: translate(-50%, -20px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    width: 90vw; 
+    max-width: 400px;
+    overflow: hidden; /* */
+}
+
+/*  */
+.modal-header { 
+    background: #0a0b0d !important; /* */
+    padding: 25px 30px; 
+    border-bottom: 1px solid rgba(56, 193, 114, 0.15); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    color: #fff; 
+}
+
+/*  */
+.modal-body { 
+    padding: 30px; 
+    background: #16171b; 
+}
+
+/*  */
+.btn-op { 
+    display: block; /* */
+    width: 100%; 
+    padding: 15px; 
+    text-align: center; 
+    text-decoration: none !important; /* */
+    color: #fff !important; /*  */
+    font-weight: 700; 
+    border-radius: 12px; 
+    margin-bottom: 15px; 
+    transition: 0.3s; 
+    box-sizing: border-box;
+}
+
+.btn-op:hover { 
+    transform: translateY(-3px); 
+    filter: brightness(1.2); 
+}
+
+/*  */
+.btn-blue { background: #2980b9; }
+.btn-red { background: #c0392b; margin-bottom: 0; }
+
+/*  */
+#cb-op:checked ~ .op-morph-box {
+    opacity: 1; 
+    visibility: visible; 
+    pointer-events: auto;
+    transform: translate(-50%, 0) scale(1);
+}
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 65px;
+            background: rgba(10, 11, 13, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; z-index: 1000; border-bottom: 1px solid var(--border);
+        }
+        .nav-links { display: flex; list-style: none; gap: 35px; align-items: center; }
+        .nav-links label, .nav-links a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.3s; }
+        
+        /* HOVER EFFECTS FOR NAV (UPDATED) */
+        .nav-links a[href="#download"]:hover { color: #fff; }
+        .nav-links label[for="cb-wiki"]:hover { color: var(--accent-yellow); }
+        .nav-links label[for="cb-upd"]:hover { color: var(--accent-green); }
+        .nav-links label[for="cb-op"]:hover { color: #fff; }
+
+        /* --- ENGINE (TRIGGERS) --- */
+        input[type="checkbox"], input[type="radio"] { display: none; }
+        
+        .overlay { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.92); 
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 1500; 
+            visibility: hidden; opacity: 0; transition: visibility 0s 0.5s, opacity 0.5s; 
+        }
+        #cb-reg:checked ~ .overlay-reg, #cb-wiki:checked ~ .overlay-wiki, #cb-tut:checked ~ .overlay-tut, #cb-upd:checked ~ .overlay-upd, #cb-online:checked ~ .overlay-online, #cb-op:checked ~ .overlay-op { 
+            visibility: visible; opacity: 1; transition: visibility 0s 0s, opacity 0.5s; 
+        }
+
+        /* --- REGISTER MORPH --- */
+        .reg-morph {
+            position: fixed; top: 14px; right: 40px; width: 130px; height: 36px;
+            background: var(--accent-red); border-radius: 50px; z-index: 2500;
+            transition: all 0.6s var(--ease-ios); overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .reg-btn-label { color: #fff; font-weight: 700; font-size: 13px; transition: 0.1s; cursor: pointer; position: absolute; }
+        .reg-window { opacity: 0; visibility: hidden; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; position: absolute; top: 0; left: 0; }
+        .reg-header { background: #fff; color: #000; padding: 25px 30px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+        .reg-body { padding: 30px; overflow-y: auto; flex: 1; color: #333; text-align: left; }
+
+        #cb-reg:checked ~ .reg-morph { top: 12vh; right: 50%; transform: translateX(50%); width: 90vw; max-width: 600px; height: auto; min-height: 400px; border-radius: 20px; }
+        #cb-reg:checked ~ .reg-morph .reg-btn-label { opacity: 0; pointer-events: none; }
+        #cb-reg:checked ~ .reg-morph .reg-window { opacity: 1; visibility: visible; transition: 0.4s 0.3s; position: relative; }
+
+        /* --- TUTORIAL & ONLINE MORPH (ANIMATED BOXES) --- */
+        .tut-morph-container { position: relative; width: 230px; height: 45px; margin-top: 20px; }
+        .tut-btn-static { 
+            background: transparent; border: 1px solid var(--accent-yellow); color: var(--accent-yellow); 
+            padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: 600; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%;
+        }
+
+        .tut-morph-box, .online-morph-box {
+            position: fixed; 
+            top: 12vh; left: 50%;
+            background: #fff; border-radius: 20px; z-index: 2000;
+            opacity: 0; visibility: hidden;
+            transform: translate(-50%, -20px) scale(0.9);
+            transition: all 0.5s var(--ease-ios);
+            pointer-events: none;
+        }
+
+        .tut-morph-box { width: 90vw; max-width: 700px; height: auto; min-height: 400px; }
+        .online-morph-box { width: 90vw; max-width: 500px; height: auto; }
+
+        #cb-tut:checked ~ * .tut-morph-box, #cb-online:checked ~ .online-morph-box {
+            transform: translate(-50%, 0) scale(1);
+            opacity: 1; visibility: visible; pointer-events: auto;
+        }
+
+        .tut-header, .online-header { background: #fff; padding: 25px 30px 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; color: #333; border-radius: 20px 20px 0 0;}
+        .tut-body, .online-body { padding: 30px; color: #444; text-align: left; }
+
+        /* --- OVERLAY CONTAINERS (WIKI, UPDATE & OP) --- */
+        .wiki-morph, .upd-morph, .op-morph {
+            position: fixed; top: 22px; width: 50px; height: 25px;
+            background: var(--bg-card); border-radius: 50px; z-index: 3000;
+            transition: all 0.7s var(--ease-ios); overflow: hidden; opacity: 0; visibility: hidden;
+        }
+        .wiki-morph { left: 240px; }
+        .upd-morph { left: 300px; }
+        .op-morph { left: 380px; }
+
+        #cb-wiki:checked ~ .wiki-morph, #cb-upd:checked ~ .upd-morph, #cb-op:checked ~ .op-morph { 
+            opacity: 1; visibility: visible; top: 0; left: 0; width: 100vw; height: 100vh; border-radius: 0; 
+        }
+        #cb-op:checked ~ .op-morph .op-layout { opacity: 1; }
+        
+        /* --- LAYOUT (SIDEBAR & TABS) --- */
+        .wiki-layout { display: grid; grid-template-columns: 320px 1fr; width: 100vw; height: 100vh; opacity: 0; transition: 0.5s 0.5s; }
+        #cb-wiki:checked ~ .wiki-morph .wiki-layout, #cb-upd:checked ~ .upd-morph .wiki-layout { opacity: 1; }
+        
+        .wiki-sidebar { background: #0a0b0d; border-right: 1px solid var(--border); padding: 50px 30px; display: flex; flex-direction: column; gap: 5px; text-align: left;}
+        .wiki-sidebar label { color: #555; font-size: 14px; cursor: pointer; transition: 0.3s; padding: 10px 15px; border-radius: 10px; }
+        .wiki-sidebar label:hover { color: #fff; background: rgba(255,255,255,0.03); }
+
+        .wiki-article { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        .wiki-pane { 
+            position: absolute; inset: 0; opacity: 0; visibility: hidden; 
+            transform: translateX(30px); transition: all 0.5s var(--ease-ios); 
+            padding: 60px 10%; overflow-y: auto; text-align: left; 
+        }
+
+        /* Update Tabs Logic */
+        #u1:checked ~ .upd-morph .pu1, #u2:checked ~ .upd-morph .pu2, #u3:checked ~ .upd-morph .pu3, #u4:checked ~ .upd-morph .pu4 { visibility: visible; opacity: 1; transform: translateX(0); }
+        #u1:checked ~ .upd-morph label[for="u1"], #u2:checked ~ .upd-morph label[for="u2"], #u3:checked ~ .upd-morph label[for="u3"], #u4:checked ~ .upd-morph label[for="u4"] { color: var(--accent-green); background: rgba(56,193,114,0.1); }
+
+        /* Wiki Tabs Logic */
+        #w0:checked ~ .wiki-morph .pw0, #w1:checked ~ .wiki-morph .pw1, #w2:checked ~ .wiki-morph .pw2, #w3:checked ~ .wiki-morph .pw3,
+        #w4:checked ~ .wiki-morph .pw4, #w5:checked ~ .wiki-morph .pw5, #w6:checked ~ .wiki-morph .pw6, #w7:checked ~ .wiki-morph .pw7 { visibility: visible; opacity: 1; transform: translateX(0); }
+        
+        #w0:checked ~ .wiki-morph label[for="w0"], #w1:checked ~ .wiki-morph label[for="w1"], #w2:checked ~ .wiki-morph label[for="w2"], #w3:checked ~ .wiki-morph label[for="w3"],
+        #w4:checked ~ .wiki-morph label[for="w4"], #w5:checked ~ .wiki-morph label[for="w5"], #w6:checked ~ .wiki-morph label[for="w6"], #w7:checked ~ .wiki-morph label[for="w7"] { color: var(--accent-yellow); background: rgba(255,193,7,0.1); }
+
+        .toc-link { background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: 0.3s; color: var(--accent-yellow); text-align: left; display: block; font-weight: 500; }
+        .toc-link:hover { background: rgba(255,193,7,0.1); transform: translateX(5px); }
+
+        /* --- UPDATE IMAGES SYSTEM --- */
+        .upd-gallery { display: flex; gap: 15px; flex-wrap: wrap; margin: 15px 0 25px; }
+        .upd-gallery label { 
+            width: 140px; height: 90px; border-radius: 10px; border: 2px solid var(--border); 
+            overflow: hidden; cursor: pointer; transition: 0.3s; display: block; 
+        }
+        .upd-gallery label:hover { border-color: var(--accent-green); transform: translateY(-3px); }
+        .upd-gallery img { width: 100%; height: 100%; object-fit: cover; }
+
+        .zoom-overlay { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; 
+            display: flex; align-items: center; justify-content: center; 
+            opacity: 0; visibility: hidden; transition: 0.4s; 
+        }
+        .zoom-overlay img { 
+            max-width: 90vw; max-height: 80vh; border-radius: 15px; border: 2px solid var(--accent-green); 
+            transform: scale(0.8); transition: 0.4s var(--ease-ios); box-shadow: 0 0 40px rgba(56,193,114,0.2);
+            z-index: 10001; pointer-events: none;
         }
         
-        .hint-text {
-            font-size: 15px;
-            color: #b0b0b0;
-            margin-bottom: 20px;
-            max-width: 500px;
-            line-height: 1.5;
-        }
-
-        .seo-description {
-            font-size: 17px;
-            color: #9ca3af;
-            max-width: 600px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        .btn-info {
-            background-color: #ffc107;
-            color: #000;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            cursor: default;
-        }
-
-        .btn-green {
-            background-color: transparent; 
-            color: #38c172; 
-            text-decoration: none;
-            width: auto; 
-            padding: 0 60px; 
-            height: 48px;
-            border-radius: 6px;
-            font-size: 16px;
-            border: 1px solid #198754; 
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            cursor: pointer;
-            box-shadow: 0 0 0 0px transparent;
-            transition: all 0.15s ease-out; 
-        }
+        input[type="radio"].zoom-trigger { display: none; }
+        input[type="radio"].zoom-trigger:checked + .zoom-overlay { opacity: 1; visibility: visible; }
+        input[type="radio"].zoom-trigger:checked + .zoom-overlay img { transform: scale(1); }
         
-        .btn-green:hover {
-            background-color: #198754; 
-            color: #ffffff; 
-            border-color: #198754; 
-            box-shadow: 0 0 0 0px transparent; 
-        }
+        .zoom-close-bg { position: absolute; inset: 0; cursor: pointer; z-index: 9999; }
+        .zoom-close-btn { position: absolute; top: 30px; right: 40px; font-size: 40px; color: var(--accent-green); cursor: pointer; z-index: 10005; }
 
-        .btn-green:active {
-            background-color: #198754; 
-            color: #ffffff;
-            box-shadow: 0 0 0 5px #1d553d; 
+        .zoom-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--accent-green);
+            color: var(--accent-green); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.3s; z-index: 10005; font-size: 20px;
         }
+        .zoom-nav:hover { background: var(--accent-green); color: #000; }
+        .zoom-nav-left { left: 40px; }
+        .zoom-nav-right { right: 40px; }
 
-        .btn-green svg { 
-            width: 18px; 
-            height: 18px; 
-            fill: currentColor; 
-        }
 
-        .footer-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #1a1b1f;
-            padding: 15px 0;
-            font-size: 11px;
-            color: #9ca3af;
-            line-height: 1.4;
-        }
+        /* --- MAIN LIGHTBOX GALLERY --- */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.98); z-index: 5000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: 0.5s; pointer-events: none;}
+        .lightbox-close-bg { position: absolute; inset: 0; cursor: pointer; z-index: 5001; }
         
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .lightbox img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); max-width: 90%; max-height: 80%; border-radius: 20px; border: 2.5px solid var(--accent-green); opacity: 0; transition: 0.5s var(--ease-ios); pointer-events: none; box-shadow: 0 0 50px rgba(56,193,114,0.3); z-index: 5002; }
+        #gal1:checked ~ .lightbox, #gal2:checked ~ .lightbox, #gal3:checked ~ .lightbox, #gal4:checked ~ .lightbox, #gal5:checked ~ .lightbox, #gal6:checked ~ .lightbox, #gal7:checked ~ .lightbox { opacity: 1; visibility: visible; pointer-events: auto; }
+        #gal1:checked ~ .lightbox #v1, #gal2:checked ~ .lightbox #v2, #gal3:checked ~ .lightbox #v3, #gal4:checked ~ .lightbox #v4, #gal5:checked ~ .lightbox #v5, #gal6:checked ~ .lightbox #v6, #gal7:checked ~ .lightbox #v7 { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        .l-nav { position: fixed; top: 50%; width: 100%; display: none; justify-content: space-between; padding: 0 30px; transform: translateY(-50%); z-index: 5500; }
+        .l-nav label { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--accent-green); color: var(--accent-green); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+        #gal1:checked ~ .lightbox .n1, #gal2:checked ~ .lightbox .n2, #gal3:checked ~ .lightbox .n3, #gal4:checked ~ .lightbox .n4, #gal5:checked ~ .lightbox .n5, #gal6:checked ~ .lightbox .n6, #gal7:checked ~ .lightbox .n7 { display: flex; }
+
+        /* --- CONTENT --- */
+        main { margin-top: 100px; padding: 0 6% 100px; position: relative; }
+        .hero { height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin-bottom: 60px; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://sa2.wohlnet.ru/shared/background.jpg') center/cover; border-radius: 40px; border: 1px solid var(--border); }
+        .logo-main { max-width: 80%; max-height: 250px; margin-bottom: 30px; }
+        .btn-play { background: var(--accent-yellow); color: #000; padding: 18px 70px; border-radius: 12px; font-weight: 700; font-size: 24px; text-decoration: none; transition: 0.3s; display: inline-block; box-shadow: 0 0 30px rgba(255,193,7,0.3); }
+
+        .card-nexus { background: var(--bg-card); border: 1px solid var(--border); border-radius: 40px; padding: 45px; margin-bottom: 40px; text-align: left; }
+        .gallery-list { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; margin-top: 25px; }
+        .gallery-list label { flex: 0 0 300px; height: 170px; border-radius: 15px; overflow: hidden; border: 2.5px solid var(--border); cursor: pointer; transition: 0.3s; }
+        .gallery-list img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .mirror-btn { border: 2px solid var(--accent-green); color: var(--accent-green); padding: 18px; border-radius: 15px; text-align: center; text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; transition: 0.3s; }
+        .mirror-btn:hover { background: var(--accent-green); color: #000; }
+
+        .discord-section {
+            width: 100%; height: 620px; margin-top: 60px; border-radius: 40px; border: 1px solid var(--border); overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://sa2.wohlnet.ru/shared/organnerx.png') center/cover;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
         }
+        .discord-btn { background: var(--accent-yellow); color: #000; padding: 15px 50px; border-radius: 12px; font-weight: 700; text-decoration: none; margin-top: 25px; transition: 0.3s; }
+        
+        /* OTHER PROJECTS BUTTONS */
+        .op-btn {
+            color: #fff; padding: 15px 30px; border-radius: 12px; font-weight: 700; font-size: 16px;
+            text-decoration: none; transition: 0.3s; display: inline-block; min-width: 320px; text-align: center;
+        }
+        .op-btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+		
+		/* ========================================= */
+        /* --- ADAPTATION FOR MOBILE DEVICES --- */
+        /* ========================================= */
+        
+       @media (max-width: 850px) {
+            /* 1. ИСПРАВЛЯЕМ ЧЕРНЫЙ ЭКРАН (Скрываем неактивные порталы) */
+            .wiki-morph, .upd-morph, .op-morph {
+                opacity: 0 !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+            /* Показываем их ТОЛЬКО при нажатии */
+            #cb-wiki:checked ~ .wiki-morph, 
+            #cb-upd:checked ~ .upd-morph, 
+            #cb-op:checked ~ .op-morph {
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                inset: 0 !important;
+                z-index: 9999 !important;
+            }
+
+            /* 2. НАВИГАЦИЯ (Логотип сверху, ссылки снизу) */
+            nav {
+                height: auto !important;
+                padding: 15px 10px !important;
+                flex-direction: column !important;
+            }
+            nav > div:first-child {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 15px !important;
+            }
+            .nav-links {
+                gap: 12px !important;
+                justify-content: center !important;
+                width: 100% !important;
+            }
+            .nav-links a, .nav-links label {
+                font-size: 13px !important;
+            }
+            nav > div:last-child { display: none !important; } /* Убираем пустой блок */
+
+            /* 3. ГЛАВНЫЙ ЭКРАН (Hero) */
+            main { 
+                margin-top: 160px !important; 
+                padding: 0 15px 50px !important; 
+            }
+            .hero { 
+                height: 300px !important; 
+                border-radius: 20px !important;
+                margin-bottom: 25px !important;
+            }
+            .logo-main { max-width: 90% !important; max-height: 140px !important; }
+            .btn-play { padding: 12px 35px !important; font-size: 18px !important; }
+
+            /* 4. КНОПКА РЕГИСТРАЦИИ (В нижний угол) */
+            .reg-morph {
+                top: auto !important;
+                bottom: 20px !important;
+                right: 20px !important;
+                left: auto !important;
+                transform: none !important;
+                z-index: 2000 !important;
+            }
+            #cb-reg:checked ~ .reg-morph {
+                top: 5vh !important;
+                right: 5vw !important;
+                width: 90vw !important;
+                height: auto !important;
+            }
+
+            /* 5. БЛОК ABOUT И ОНЛАЙН */
+            .card-nexus { padding: 20px !important; }
+            .about-header-flex { 
+                flex-direction: column !important; 
+                align-items: flex-start !important; 
+                gap: 10px !important; 
+            }
+            .online-badge { font-size: 12px !important; padding: 4px 12px !important; }
+
+            /* 6. WIKI И UPDATES (Вертикальное меню для мобилок) */
+            .wiki-layout {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .wiki-sidebar {
+                width: 100% !important;
+                padding: 60px 15px 15px !important;
+                max-height: 45vh !important;
+                overflow-y: auto !important;
+                border-right: none !important;
+                border-bottom: 1px solid var(--border) !important;
+            }
+            .wiki-sidebar label {
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+            }
+            .wiki-pane { padding: 20px 15px !important; }
+
+            /* 7. СКАЧИВАНИЕ (Download) */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+            .mirror-btn { padding: 14px !important; font-size: 15px !important; }
+            
+            /* Кнопки в галерее */
+            .gallery-list label { flex: 0 0 160px !important; height: 100px !important; }
+        }
+		
     </style>
 </head>
 <body>
 
+    <div class="aura"></div>
+
+    <input type="checkbox" id="cb-wiki"><input type="checkbox" id="cb-upd"><input type="checkbox" id="cb-reg"><input type="checkbox" id="cb-tut"><input type="checkbox" id="cb-online"><input type="checkbox" id="cb-op">
+    
+    <input type="radio" name="w-t" id="w0" checked><input type="radio" name="w-t" id="w1"><input type="radio" name="w-t" id="w2"><input type="radio" name="w-t" id="w3"><input type="radio" name="w-t" id="w4"><input type="radio" name="w-t" id="w5"><input type="radio" name="w-t" id="w6"><input type="radio" name="w-t" id="w7">
+    
+    <input type="radio" name="u-t" id="u1" checked><input type="radio" name="u-t" id="u2"><input type="radio" name="u-t" id="u3"><input type="radio" name="u-t" id="u4">
+    
+    <input type="radio" name="ga" id="ga-off" checked><input type="radio" name="ga" id="gal1"><input type="radio" name="ga" id="gal2"><input type="radio" name="ga" id="gal3"><input type="radio" name="ga" id="gal4"><input type="radio" name="ga" id="gal5"><input type="radio" name="ga" id="gal6"><input type="radio" name="ga" id="gal7">
+
+    <label for="cb-reg" class="overlay overlay-reg"></label>
+    <label for="cb-wiki" class="overlay overlay-wiki"></label>
+    <label for="cb-upd" class="overlay overlay-upd"></label>
+    <label for="cb-tut" class="overlay overlay-tut"></label>
+    <label for="cb-online" class="overlay overlay-online"></label>
+    <label for="cb-op" class="overlay overlay-op"></label>
+
+    <!-- LIGHTBOX GALLERY (MAIN PAGE) -->
+    <div class="lightbox">
+        <label for="ga-off" class="lightbox-close-bg"></label>
+        <label for="ga-off" style="position:fixed; top:30px; right:40px; font-size:40px; color:var(--accent-green); cursor:pointer; z-index:6000;">&times;</label>
+        <div class="lightbox-img-box">
+            <img src="https://sa2.wohlnet.ru/1.jpg" id="v1"><img src="https://sa2.wohlnet.ru/2.jpg" id="v2"><img src="https://sa2.wohlnet.ru/3.jpg" id="v3"><img src="https://sa2.wohlnet.ru/4.jpg" id="v4"><img src="https://sa2.wohlnet.ru/5.jpg" id="v5"><img src="https://sa2.wohlnet.ru/6.jpg" id="v6"><img src="https://sa2.wohlnet.ru/7.jpg" id="v7">
+        </div>
+        <div class="l-nav n1"><label for="gal7"><i class="fa fa-chevron-left"></i></label><label for="gal2"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n2"><label for="gal1"><i class="fa fa-chevron-left"></i></label><label for="gal3"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n3"><label for="gal2"><i class="fa fa-chevron-left"></i></label><label for="gal4"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n4"><label for="gal3"><i class="fa fa-chevron-left"></i></label><label for="gal5"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n5"><label for="gal4"><i class="fa fa-chevron-left"></i></label><label for="gal6"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n6"><label for="gal5"><i class="fa fa-chevron-left"></i></label><label for="gal7"><i class="fa fa-chevron-right"></i></label></div>
+        <div class="l-nav n7"><label for="gal6"><i class="fa fa-chevron-left"></i></label><label for="gal1"><i class="fa fa-chevron-right"></i></label></div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="reg-morph">
+        <label for="cb-reg" style="position:absolute; inset:0; cursor:pointer; z-index:10;"></label>
+        <span class="reg-btn-label"><i class="fa fa-user-circle-o"></i> Register</span>
+        <div class="reg-window">
+            <div class="reg-header">
+                <h2 style="font-size: 18px; font-weight: 700;">Registration & Rules</h2>
+                <label for="cb-reg" style="cursor:pointer; font-size:24px; color:#555;">&times;</label>
+            </div>
+            <div class="reg-body">
+                <p style="margin-bottom:20px; color:#333;">Registration is available <b>inside the game client</b>.</p>
+                <div style="line-height:2; font-size:14px; color:#555;">
+                    1) Be respectful, don't insult.<br>2) No spam.<br>3) No multiple accounts.<br>4) No cheats.<br>5) No file modding.<br>6) No malicious traffic.<br>7) No AFK farming.
+                </div>
+                <label for="cb-reg" style="background:var(--accent-green); color:#000; padding:15px; border-radius:12px; font-weight:700; cursor:pointer; text-align:center; display:block; margin-top:30px;">I AGREE & CLOSE</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ONLINE MODAL (NEW) -->
+    <div class="online-morph-box">
+        <div class="online-header">
+            <h3 style="font-size: 18px; font-weight: 700;">Players online: 0</h3>
+            <label for="cb-online" style="cursor:pointer; font-size:24px; color:#555;">&times;</label>
+        </div>
+        <div class="online-body">
+            Nobody is playing right now.
+        </div>
+    </div>
+	
+	<div class="op-morph-box">
+    <div class="modal-header">
+        <h3 style="font-size: 18px; font-weight: 700;">My other projects</h3>
+        <label for="cb-op" style="cursor:pointer; font-size:24px; color:#fff;">&times;</label>
+    </div>
+    <div class="modal-body">
+        <a href="https://cso2.wohlnet.ru/" class="btn-op btn-blue">Counter-Strike Online 2</a>
+        <a href="https://vx.wohlnet.ru/" class="btn-op btn-red">Veiled Experts. Single player only.</a>
+    </div>
+</div>
+
+    <nav>
+        <div style="display:flex; align-items:center; gap:30px;">
+            <a href="/"><img src="https://sa2.wohlnet.ru/shared/logo.png" height="30"></a>
+            <ul class="nav-links">
+                <li><a href="#download">Download the game</a></li>
+                <li><label for="cb-wiki">Wiki</label></li>
+                <li><label for="cb-upd">Updates</label></li>
+                <li><label for="cb-op">Other projects</label></li>
+            </ul>
+        </div>
+        <div style="width:130px;"></div>
+    </nav>
+
+
+    <!-- WIKI PORTAL -->
+    <div class="wiki-morph">
+        <label for="cb-wiki" style="position:fixed; top:25px; right:40px; font-size:40px; color:var(--accent-green); cursor:pointer; z-index:100;">&times;</label>
+        
+        <div class="wiki-layout">
+            <aside class="wiki-sidebar">
+                <h4 style="color:var(--accent-yellow); margin-bottom:15px; font-size:18px;">Wiki Sections</h4>
+                <label for="w0"><i class="fa fa-home"></i> 0. Wiki Home</label>
+                <label for="w1">1. Connection details</label>
+                <label for="w2">2. Results screen gacha</label>
+                <label for="w3">3. Wave Defense info</label>
+                <label for="w4">4. KDH & WLD saving</label>
+                <label for="w5">5. Game modes & Maps</label>
+                <label for="w6">6. Rates + Levels table</label>
+                <label for="w7">7. Weapons + Characters</label>
+            </aside>
+            
+            <article class="wiki-article">
+                
+                <div class="wiki-pane pw0">
+                    <h2 style="color:var(--accent-yellow); margin-bottom:20px;">Welcome to the Wiki</h2>
+                    <p style="color:#ccc; max-width:800px; margin-bottom:40px;">This wiki has the most up to date information about Sudden Attack 2 Global mechanics. You may find a lot of useful info there. I created this wiki in order to not forget how some things are working on the server and client side.</p>
+                    
+                    <h3 style="color:#fff; margin-bottom:15px;">Table of contents:</h3>
+                    <div style="display:flex; flex-direction:column; gap:10px; max-width:400px;">
+                        <label for="w1" class="toc-link">1. Multiplayer connection</label>
+                        <label for="w2" class="toc-link">2. Game results screen gacha</label>
+                        <label for="w3" class="toc-link">3. Wave Defense info</label>
+                        <label for="w4" class="toc-link">4. KDH & WLD saving</label>
+                        <label for="w5" class="toc-link">5. Game modes & Maps</label>
+                        <label for="w6" class="toc-link">6. Earning rates + Levels table</label>
+                        <label for="w7" class="toc-link">7. Weapons + Characters</label>
+                    </div>
+
+                    <p style="color:#888; margin-top:50px; font-size:14px; border-top:1px solid var(--border); padding-top:20px; max-width: 800px;">More content may be added to this page in the future, so stay tuned! There are a lot more details about Sudden Attack 2 Global that are not yet covered there.</p>
+                </div>
+
+                <div class="wiki-pane pw1">
+                    <h2 style="color:var(--accent-yellow);">1. Multiplayer connection details</h2>
+                    <p style="color:var(--accent-red); font-weight:bold; margin-bottom:10px; margin-top:20px;">Important info:</p>
+                    <ul style="list-style:none; padding-left:0; margin-bottom:20px; line-height: 1.9; color:#ccc;">
+                        <li><b style="color:var(--accent-yellow);">1.</b> We are not using dedicated servers for this game; instead, matches are hosted on players' computers. Thus, connection is essentially P2P as [player &lt;-&gt; room host], or in worst case scenario, P2P via relay as [player &lt;-&gt; master server &lt;-&gt; room host].</li>
+                        <li><b style="color:var(--accent-yellow);">2.</b> After joining the room, wait a few seconds before pressing the 'Start' button. This improves the chances of establishing a direct P2P connection without relay.</li>
+                        <li><b style="color:var(--accent-yellow);">3.</b> Radmin VPN is supported. If you and your friends are in the same emulated local network, the connection will go through it, reducing the ping in some cases.</li>
+                        <li><b style="color:var(--accent-yellow);">4.</b> Please avoid becoming the room host if your PC is low-end and runs the game at only 10 FPS, as this will result in a poor experience for other players joining your game.</li>
+                    </ul>
+                    <p style="color:#fff; font-weight:bold;">You can see your connection type next to the radar:</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:15px; margin: 15px 0;">
+                        <img src="https://sa2.wohlnet.ru/wiki/c_host.png" alt="Host" style="border:1px solid var(--border); border-radius:8px;">
+                        <img src="https://sa2.wohlnet.ru/wiki/c_p2p.png" alt="P2P" style="border:1px solid var(--border); border-radius:8px;">
+                        <img src="https://sa2.wohlnet.ru/wiki/c_relay.png" alt="Relay" style="border:1px solid var(--border); border-radius:8px;">
+                    </div>
+                    <p style="color:#aaa;">If you see a 'Relay' when playing with known friends, give Radmin VPN a try as it may help establishing direct P2P connection and reduce the ping.</p>
+                </div>
+
+                <div class="wiki-pane pw2">
+                    <h2 style="color:var(--accent-yellow);">2. Game results screen gacha</h2>
+                    <p style="margin-top:20px; color:#ccc;">You can open 1 box out of 3 after finishing the game if you fulfil the following conditions:</p>
+                    <ul style="list-style:none; margin:10px 0 20px 15px; color:#ddd;">
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> Played Wave Defense game mode and reached rank higher than "D".</li>
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> Played any other game mode (bot modes included) for at least 4 minutes.</li>
+                    </ul>
+                    <p style="color:#ccc;">The gacha reward is randomly selected from the weapons parts you have not unboxed yet:</p>
+                    <ul style="list-style:none; margin:10px 0 20px 15px; color:#ddd;">
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> [Camo Navy] Weapon parts.</li>
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> [Creature] Weapon parts.</li>
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> [DNA] Weapon parts.</li>
+                    </ul>
+                    <p style="color:#aaa;">In total 133 weapons parts that can be used to build 19 weapons presets. After you unbox all weapon parts, you'll start receiving a random amount of Points from gacha boxes.</p>
+                </div>
+
+                <div class="wiki-pane pw3">
+                    <h2 style="color:var(--accent-yellow);">3. Wave Defense info</h2>
+                    <p style="margin-top:20px; color:#ccc;">The game mode final rank is based <b style="color:var(--accent-red);">NOT</b> on the wave you just finished, but on the wave you just started. The ranks are just there for the visual representation of how far you have advanced.</p>
+                    <ul style="list-style:none; margin:15px 0 0 15px; line-height: 2; color:#ddd;">
+                        <li><i class="fa fa-caret-right"></i> Wave 0-5: Rank <span style="color:var(--accent-red); font-weight:bold;">"D"</span>. Fail, cannot play the gacha.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 6: Rank <span style="color:var(--accent-yellow); font-weight:bold;">"C"</span>.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 11: Rank <span style="color:var(--accent-yellow); font-weight:bold;">"B"</span>.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 16: Rank <span style="color:var(--accent-yellow); font-weight:bold;">"A"</span>.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 21: Rank <span style="color:var(--accent-green); font-weight:bold;">"S"</span>. Game won, and all next waves are infinite.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 23: Rank <span style="color:var(--accent-green); font-weight:bold;">"SS"</span>.</li>
+                        <li><i class="fa fa-caret-right"></i> Wave 25: Rank <span style="color:var(--accent-green); font-weight:bold;">"SSS"</span>.</li>
+                    </ul>
+                </div>
+
+                <div class="wiki-pane pw4">
+                    <h2 style="color:var(--accent-yellow);">4. KDH & WLD saving</h2>
+                    <p style="margin-top:20px; color:#ccc;">Kills/Deaths/Headshots and Wins/Loses/Draws are saved to you stats in the following game modes:</p>
+                    <ul style="list-style:none; margin:15px 0 0 15px; line-height: 2; color:#ddd;">
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> Team Deathmatch. AI Bot modes not included.</li>
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> Bomb (Demolition). AI Bot modes not included.</li>
+                        <li><i class="fa fa-caret-right" style="color:var(--accent-yellow);"></i> Domination.</li>
+                    </ul>
+                </div>
+
+                <div class="wiki-pane pw5">
+                    <h2 style="color:var(--accent-yellow);">5. Game modes & Maps</h2>
+                    <p style="margin-top:20px; color:#ccc;">The following game modes are available for play:</p>
+                    <div style="margin-top: 20px; display:flex; flex-wrap:wrap; gap:40px;">
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;"><i class="fa fa-gamepad"></i> Team Deathmatch:</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ WareHouse<br>└ CastleTown<br>└ NigerDelta<br>└ CrossCounter <span style="color:#888;">~ Sniper rifles only</span></p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;"><i class="fa fa-bomb"></i> Bomb (Demolition):</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ 3Supply<br>└ RadarSite<br>└ Salvatore<br>└ Asupply<br>└ Waterfall<br>└ Duo<br>└ Mansion</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;"><i class="fa fa-flag"></i> Domination:</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ StormVill<br>└ Mgarden <span style="color:#888;">~ Melee only</span></p>
+                            
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;"><i class="fa fa-shield"></i> Wave Defense:</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ CentralStation</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;"><i class="fa fa-android"></i> Humans+AI vs AI:</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ Team Deathmatch / WareHouse<br>└ Team Deathmatch / CrossCounter <span style="color:#888;">~ Sniper only</span><br>└ Bomb (Demolition) / Asupply</p>
+                            
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;"><i class="fa fa-users"></i> Humans+AI vs Humans+AI:</p>
+                            <p style="margin-left: 20px; line-height: 1.9; color:#ddd;">└ Team Deathmatch / WareHouse<br>└ Team Deathmatch / CrossCounter <span style="color:#888;">~ Sniper only</span><br>└ Bomb (Demolition) / Asupply</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wiki-pane pw6">
+                    <h2 style="color:var(--accent-yellow);">6. Earning rates + Levels table</h2>
+                    <p style="margin-top:20px; color:#ccc;">To earn Points/Exp you have to play the games to the end.</p>
+                    <ul style="list-style:none; margin:15px 0 20px 15px; font-size:16px;">
+                        <li><i class="fa fa-database" style="color:var(--accent-yellow);"></i> Points per minute of play: <b style="color:#fff;">30</b>.</li>
+                        <li><i class="fa fa-star" style="color:var(--accent-green);"></i> Exp per minute of play: <b style="color:#fff;">60</b>.</li>
+                    </ul>
+                    <img src="https://sa2.wohlnet.ru/wiki/levels.png" alt="Levels table" style="max-width:100%; border-radius:10px; border:1px solid var(--border);">
+                </div>
+
+                <div class="wiki-pane pw7">
+                    <h2 style="color:var(--accent-yellow);">7. Weapons + Characters</h2>
+                    <p style="margin-top:20px; color:#ccc;">The following weapons exist in game; the underscored ones can also be customized:</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:40px; margin: 20px 0 30px;">
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;">• Assault rifle:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ M16<br>└ <u>AK-47</u><br>└ AK-103<br>└ <u>M4A1</u><br>└ CM901<br>└ <u>FAMAS</u><br>└ FAMAS Gr. Camo</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;">• Sniper rifle:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ <u>TRG-21</u><br>└ <u>SVD</u><br>└ SSG 69<br>└ <u>PSG-1</u><br>└ Winchester M73<br>└ Winchester M73 Gr. Camo</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;">• Machine gun:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ M249</p>
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;">• Submachine gun:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ MP5<br>└ P90</p>
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;">• Shotgun:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ M870<br>└ KSG-12</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;">• Pistol:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ D. Eagle<br>└ D. Eagle Carbon<br>└ USP45<br>└ Taurus 608<br>└ Anaconda<br>└ B. 93R</p>
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;">• Etc:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ C4 Bomb<br>└ C4 Bomb TechKit</p>
+                        </div>
+                        <div>
+                            <p style="color:var(--accent-yellow); font-weight:bold;">• Melee:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ Axe Knife<br>└ Axe Knife Carbon<br>└ Gurkha<br>└ Gurkha Carbon<br>└ Knife<br>└ TigerStripe</p>
+                            <p style="color:var(--accent-yellow); font-weight:bold; margin-top:15px;">• Grenade:</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.8;">└ M67 (Explosive)<br>└ M67 Carbon (Explosive)<br>└ M7290 (Flashbang)<br>└ M83 (Smoke)</p>
+                        </div>
+                    </div>
+
+                    <p style="border-top: 1px solid var(--border); padding-top:20px; color:#ccc;">The following characters exist in game:</p>
+                    <div style="display:flex; flex-wrap:wrap; gap:60px; margin-top:20px;">
+                        <div>
+                            <p style="color:var(--accent-red); font-weight:bold;">[ RED TEAM ]</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.9; margin-top:10px;">└ Male: Eagle Eye<br>└ Male: Rider<br>└ Male: Pearson<br>└ Female: Leona<br>└ Female: Viper<br>└ Female: Miya (RED)</p>
+                        </div>
+                        <div>
+                            <p style="color:#3498db; font-weight:bold;">[ BLUE TEAM ]</p>
+                            <p style="margin-left: 15px; color:#ddd; line-height: 1.9; margin-top:10px;">└ Male: Rock<br>└ Male: Flash<br>└ Male: Stingray<br>└ Female: Genie<br>└ Female: Scarlet<br>└ Female: Kim Ji-Yoon (BLUE)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </article>
+        </div>
+    </div>
+
+    <!-- UPDATE PORTAL -->
+    <div class="upd-morph">
+        <label for="cb-upd" style="position:fixed; top:25px; right:40px; font-size:40px; color:var(--accent-green); cursor:pointer; z-index:100;">&times;</label>
+        <div class="wiki-layout">
+            <aside class="wiki-sidebar">
+                <h4>Recent updates</h4>
+                <label for="u1">Update: 15 January 2026</label>
+                <label for="u2">Update: 08 January 2026</label>
+                <label for="u3">Update: 02 January 2026</label>
+                <label for="u4">Project release: 27 December 2025</label>
+            </aside>
+            
+            <article class="wiki-article">
+                <!-- 15 JANUARY 2026 -->
+                <div class="wiki-pane pu1">
+                    <h2 style="color:var(--accent-green);">15 January 2026 Update notes</h2>
+                    <p>Patch "27 December 2025 -> 15 January 2026": <a href="https://sa2.wohlnet.ru/updates/2026_01_15/update.exe" style="color:var(--accent-red); font-weight:bold; text-decoration:none;">DOWNLOAD</a>.<br>
+                    Installation: Select a game root folder (where "SA2Launcher.exe" is located) and install the files. Click "Replace All" when prompted.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">[Overall]</h3>
+                    <p>1) Added unreleased [Galaxy] Skins set (Cash wallet) to the Shop:<br>
+                    • [Galaxy] AK-47<br>
+                    • [Galaxy] TRG-21<br>
+                    • [Galaxy] CM901<br>
+                    • [Galaxy] M4A1<br>
+                    • [Galaxy] Winchester M73</p>
+
+                    <div class="upd-gallery">
+                       <label for="img-15-g1"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g1.jpg"></label>
+                       <label for="img-15-g2"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g2.jpg"></label>
+                       <label for="img-15-g3"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g3.jpg"></label>
+                       <label for="img-15-g4"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g4.jpg"></label>
+                       <label for="img-15-g5"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g5.jpg"></label>
+                       <label for="img-15-g6"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g6.jpg"></label>
+                       <label for="img-15-g7"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g7.jpg"></label>
+                    </div>
+
+                    <p style="margin-top:20px;">2) Added unreleased [Miya] AK-47 (Points wallet) to the Shop.</p>
+
+                    <div class="upd-gallery">
+                       <label for="img-15-m1"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m1.jpg"></label>
+                       <label for="img-15-m2"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m2.jpg"></label>
+                       <label for="img-15-m3"><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m3.jpg"></label>
+                    </div>
+                </div>
+
+                <!-- 08 JANUARY 2026 -->
+                <div class="wiki-pane pu2">
+                    <h2 style="color:var(--accent-green);">08 January 2026 Update notes</h2>
+                    <p>Patch "27 December 2025 -> 08 January 2026": <a href="https://sa2.wohlnet.ru/updates/2026_01_08/update.exe" style="color:var(--accent-red); font-weight:bold; text-decoration:none;">DOWNLOAD</a>.<br>
+                    Installation: Select a game root folder (where "SA2Launcher.exe" is located) and install the files. Click "Replace All" when prompted.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">[Overall]</h3>
+                    <p>1) Added a highly requested feature to customize the characters and weapons bots use.</p>
+                    <ul style="list-style:none; padding-left:15px; color:#aaa; margin-top:10px;">
+                        <li>• To customize, open the file "SA2Game\Script\BotSettings.js" in any text editor and make the desired changes.</li>
+                        <li>• At the top of the file, you'll find a list of possible items for each equipment category.</li>
+                        <li>• Bots will randomly select an item ID from the provided list.</li>
+                        <li>• Example: "RedCharacter = [58]" means all Red team bots will always select item ID 58 = [F] Miya (RED).</li>
+                        <li>• If you use an item ID that is not supported or make the list empty, an entire file will be silently ignored and default settings will be used.</li>
+                    </ul>
+
+                    <div class="upd-gallery">
+                       <label for="img-08-c1"><img src="https://sa2.wohlnet.ru/updates/2026_01_08/c1.jpg"></label>
+                       <label for="img-08-c2"><img src="https://sa2.wohlnet.ru/updates/2026_01_08/c2.jpg"></label>
+                       <label for="img-08-w1"><img src="https://sa2.wohlnet.ru/updates/2026_01_08/w1.jpg"></label>
+                       <label for="img-08-w2"><img src="https://sa2.wohlnet.ru/updates/2026_01_08/w2.jpg"></label>
+                    </div>
+
+                    <p style="margin-top:20px;">2) If "Sniper Rifle only" restriction is set, bots will no longer ignore it.</p>
+
+                    <h3 style="margin-top:25px; color:var(--accent-red);">[Minor tweaks]</h3>
+                    <p>1) Late match joiners are now counted into ongoing round logic.</p>
+                </div>
+
+                <!-- 02 JANUARY 2026 -->
+                <div class="wiki-pane pu3">
+                    <h2 style="color:var(--accent-green);">02 January 2026 Update notes</h2>
+                    <p>Patch "27 December 2025 -> 02 January 2026": <a href="https://sa2.wohlnet.ru/updates/2026_01_02/update.exe" style="color:var(--accent-red); font-weight:bold; text-decoration:none;">DOWNLOAD</a>.<br>
+                    Installation: Select a game root folder (where "SA2Launcher.exe" is located) and install the files. Click "Replace All" when prompted.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">[Wave Defense game mode]</h3>
+                    <p>1) Enabled 2 unreleased weapons in the Side shop:<br>
+                    • Molotov cocktail, price is 400$. Burns and slows down creatures.<br>
+                    • Flare, price is 300$. Attracts creatures if thrown on the ground.</p>
+
+                    <div class="upd-gallery">
+                       <label for="img-02-w1"><img src="https://sa2.wohlnet.ru/updates/2026_01_02/w1.jpg"></label>
+                       <label for="img-02-w2"><img src="https://sa2.wohlnet.ru/updates/2026_01_02/w2.jpg"></label>
+                    </div>
+
+                    <p style="margin-top:20px;">2) Adjusted prices of some items:<br>
+                    • Reduced price of Diekatana from 1650$ to 1400$.<br>
+                    • Reduced price of Sledgehammer from 1550$ to 1300$.<br>
+                    • Reduced price of RPG-7 from 2000$ to 1800$.<br>
+                    • Reduced price of Claymore from 600$ to 500$.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">[Overall]</h3>
+                    <p>1) Enabled unreleased "Radio Menu 4" action for each character, [V] key by default.</p>
+
+                    <div class="upd-gallery">
+                       <label for="img-02-v1"><img src="https://sa2.wohlnet.ru/updates/2026_01_02/v1.png"></label>
+                       <label for="img-02-v2"><img src="https://sa2.wohlnet.ru/updates/2026_01_02/v2.png"></label>
+                    </div>
+
+                    <p style="margin-top:20px;">2) Reduced the chance of becoming permanently stuck on the loading screen.<br>
+                    3) Added 5,000 Points to every account existing in the Database, as a New Year gift.</p>
+                </div>
+
+                <!-- 27 DECEMBER 2025 RELEASE -->
+                <div class="wiki-pane pu4">
+                    <h2 style="color:var(--accent-green);">27 December 2025 Release notes</h2>
+                    <p>I would like to highlight the following topics:</p>
+                    
+                    <h3 style="margin-top:25px; color:#fff;">1. Server Launch</h3>
+                    <p>The server is finally open! The game is now alive again after being closed and largely forgotten since 2016. Brought to you by OrgannerX with some help from Flicker.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">2. Project Development</h3>
+                    <p>Work on this project (both server and client side) began around June-July 2025. It took me roughly six months of dedicated effort to bring the project to life and allow you to experience it.</p>
+                    
+                    <h3 style="margin-top:25px; color:#fff;">3. Economy and Monetization</h3>
+                    <p>The economy on this private server is not P2W - there are no characters or guns that will deal an increased damage or shoot faster. However, I had to put items that gives additional little benefits to the shop for a Cash wallet. This will help me pay the server bills. And if I see a great support and a decent player count, I may work on updates for this game in future. Some features were not implemented to the planned release date due to time constraints.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">4. Potential Future Updates</h3>
+                    <p>Some unfinished or unimplemented features that may appear in future updates are:<br>
+                    • Clans system.<br>
+                    • Spectator system (if it exists in the game).<br>
+                    • 'My stats' tab in the main menu of the game.<br>
+                    • Additional UI translations (most of the interface is already translated to English by me).<br>
+                    • I can try to add unreleased characters and weapons parts from the CBT version of the game.<br>
+                    • Something else that I may have forgotten.</p>
+
+                    <h3 style="margin-top:25px; color:#fff;">5. About the Game</h3>
+                    <p>I should point out that this game is ASS under the hood. Nexon and/or Nexon GT almost literally made this game out of shit and sticks. Poking in the game's guts made it clear for me why the game was shut down that quickly after release. Fixing countless bugs and problems, maintaining this game long-term, or releasing it in other regions (like Japan), would have been extremely difficult. The publicly circulated reason for the shutdown - that the game had over-sexualized characters - is just a cover for poor development practices and design choices. This is really the worst made Nexon game that I have worked on.</p>
+                    <p style="color:var(--accent-red); margin-top:15px; border-left:4px solid var(--accent-red); padding-left:15px;"><b>Note:</b> If the game crashes, gets stuck on a loading screen, or behaves in other broken or unexpected ways, that is not my fault. This is how the client side of the game is coded, and there is nothing we can do about it.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+	
+
+    <div class="hero">
+        <img src="https://sa2.wohlnet.ru/shared/big_logo.png" class="logo-main">
+        <a href="#download" class="btn-play">PLAY NOW</a>
+    </div>
+
     <main>
-        <h1 class="message">
-            SA2 | Sudden Attack 2
-        </h1>
+        <div class="card-nexus" id="about">
+            <div class="about-header-flex">
+                <h2 style="font-size:32px; margin:0;">About Sudden Attack 2</h2>
+                
+                <!-- NEW ONLINE BADGE BUTTON -->
+                <label for="cb-online" class="online-badge">
+                    <span class="pulse-dot"></span> Online: 0
+                </label>
 
-        <div class="seo-description">
-            Welcome to the website for SA2. This page serves as a gateway to our main website. Sudden Attack 2, and this community-driven network provides access to website.
+            </div>
+            <p style="color:#aaa; font-size:18px;">
+                Sudden Attack 2 is a free-to-play multiplayer first-person shooter game developed by Nexon GT as a sequel to the original Sudden Attack. Initially launched on July 6th, 2016. Runs on <b>Unreal Engine 3</b>. Satisfying visuals, weapon customization, and Zombie PVE.
+            </p>
+            <div class="gallery-list">
+                <label for="gal1"><img src="https://sa2.wohlnet.ru/1.jpg"></label>
+                <label for="gal2"><img src="https://sa2.wohlnet.ru/2.jpg"></label>
+                <label for="gal3"><img src="https://sa2.wohlnet.ru/3.jpg"></label>
+                <label for="gal4"><img src="https://sa2.wohlnet.ru/4.jpg"></label>
+                <label for="gal5"><img src="https://sa2.wohlnet.ru/5.jpg"></label>
+                <label for="gal6"><img src="https://sa2.wohlnet.ru/6.jpg"></label>
+                <label for="gal7"><img src="https://sa2.wohlnet.ru/7.jpg"></label>
+            </div>
         </div>
 
-        <div class="hint-text">
-            To access the site, click the button below, and you will be redirected to the main page.
+        <div class="card-nexus" id="download">
+            <h2 style="font-size:32px; color:var(--accent-green); margin-bottom:30px;">Download Game</h2>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:50px;">
+                <div>
+                    <p style="color:#888;">Required OS: Windows 7 x64 or higher.<br> Required free RAM: ~3 GB. <br> Required disk space: ~10 GB. <br> Version: 15 January 2026 (latest). </p>
+                    
+                    <div class="tut-morph-container">
+                        <label for="cb-tut" class="tut-btn-static"><i class="fa fa-info-circle"></i> Installation tutorial</label>
+                        <div class="tut-morph-box">
+                            <div class="tut-header"><h3 style="font-size: 18px; font-weight: 700;">Installation tutorial</h3><label for="cb-tut" style="cursor:pointer; font-size:24px; color:#555;">&times;</label></div>
+                            <div class="tut-body">
+                                1) <span style="color:var(--accent-red)">Extract game files</span> from downloaded archive.<br>
+                                2) Run the game with <span style="color:var(--accent-red)">SA2Launcher.exe</span> located in a <span style="color:var(--accent-red)">root folder</span> of the extracted game.<br><br>
+                                Notes:<br>
+                                • It is recommended to <span style="color:var(--accent-red)">white-list the game folder</span> in your antivirus software and Windows Defender after extracting the game, to make sure the game launches normally and connects with other players properly.<br>
+                                • It might be required to <span style="color:var(--accent-red)">choose "Run as Administrator"</span> on some systems to launch the game normally.
+                                <label for="cb-tut" style="background:#222; color:#fff; padding:12px; border-radius:10px; display:block; text-align:center; margin-top:30px; cursor:pointer;">Got it</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="https://dri.me/gcOpsy16AVIjRXUofcBJdDdN2FAtll" class="mirror-btn"><i class="fa fa-download"></i> Drime Mirror</a>
+                    <a href="https://pixeldrain.com/u/K4WQRKnT" class="mirror-btn"><i class="fa fa-download"></i> Pixeldrain Mirror</a>
+                </div>
+            </div>
         </div>
 
-        <div class="btn-info">
-            Redirecting to sa2.wohlnet.ru
+        <div class="discord-section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('https://sa2.wohlnet.ru/shared/discord.jpg');">
+            <p style="font-size: 24px; font-weight: 700;">Don't forget to join our Discord server</p>
+            <a href="https://discord.gg/WhyKnvN6zt" class="discord-btn">Join Discord</a>
         </div>
-
-        <a href="https://sa2.wohlnet.ru/" class="btn-green">
-            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
-            Visit SA2 Main Website
-        </a>
     </main>
 
-    <footer class="footer-bar">
-        This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
-        This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
+<footer style="padding-top: 60px; text-align:center; display: flex; flex-direction: column;">
+        <div style="flex: 1;">
+            
+        </div>
+        
+        <div style="background-color: #212227; padding: 30px 20px; width: 100%;">
+            <div style="display: flex; gap: 30px; justify-content: center; align-items: center; opacity: 0.7; margin-bottom: 15px;">
+                <img src="https://sa2.wohlnet.ru/shared/organnerx.png" alt="ORGANNERX" height="34" onerror="this.outerHTML='<span style=\'font-weight:bold; opacity:0.4; font-size:20px; color:#fff; font-family: sans-serif;\'>ORGANNERX</span>'"> 
+				</div>
+				<img src="https://sa2.wohlnet.ru/shared/nexon.png" alt="NEXON" height="24" onerror="this.outerHTML='<span style=\'font-weight:bold; font-size:20px; color:#fff; font-family: sans-serif;\'>NEXON</span>'">
+                <img src="https://sa2.wohlnet.ru/shared/nexongt.png" alt="NEXON GT" height="24" onerror="this.outerHTML='<span style=\'font-weight:bold; font-size:20px; color:#fff; font-family: sans-serif;\'>NEXON GT</span>'">
+            </div>
+			<div style="background-color: #1a1b1f; padding: 8px 8px; width: 100%;">
+            <p style="color: #6c757d; font-size: 15px; margin: 0;">This project is not affiliated with Nexon Co., Ltd. or Nexon GT.</p>
+        </div>
     </footer>
+
+    <!-- GLOBAL IMAGE ZOOM OVERLAYS -->
+    <input type="radio" name="upd-ga" id="upd-ga-off" checked>
+
+    <!-- 15 Jan Overlays (Galaxy) -->
+    <input type="radio" name="upd-ga" id="img-15-g1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g7" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g1.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g3" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g2.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g3" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g4" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g3.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g4" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g3" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g5" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g4.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g5" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g4" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g6" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g5.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g6" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g5" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g7" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g6.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-g7" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-g6" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-g1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/g7.jpg"></div>
+    
+    <!-- 15 Jan Overlays (Miya) -->
+    <input type="radio" name="upd-ga" id="img-15-m1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-m3" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-m2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m1.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-m2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-m1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-m3" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m2.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-15-m3" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-15-m2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-15-m1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_15/m3.jpg"></div>
+
+    <!-- 08 Jan Overlays -->
+    <input type="radio" name="upd-ga" id="img-08-c1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-08-w2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-08-c2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_08/c1.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-08-c2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-08-c1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-08-w1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_08/c2.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-08-w1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-08-c2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-08-w2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_08/w1.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-08-w2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-08-w1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-08-c1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_08/w2.jpg"></div>
+
+    <!-- 02 Jan Overlays (Weapons) -->
+    <input type="radio" name="upd-ga" id="img-02-w1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-02-w2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-02-w2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_02/w1.jpg"></div>
+    <input type="radio" name="upd-ga" id="img-02-w2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-02-w1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-02-w1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_02/w2.jpg"></div>
+    
+    <!-- 02 Jan Overlays (Radio) -->
+    <input type="radio" name="upd-ga" id="img-02-v1" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-02-v2" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-02-v2" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_02/v1.png"></div>
+    <input type="radio" name="upd-ga" id="img-02-v2" class="zoom-trigger"><div class="zoom-overlay"><label for="upd-ga-off" class="zoom-close-bg"></label><label for="upd-ga-off" class="zoom-close-btn">&times;</label><label for="img-02-v1" class="zoom-nav zoom-nav-left"><i class="fa fa-chevron-left"></i></label><label for="img-02-v1" class="zoom-nav zoom-nav-right"><i class="fa fa-chevron-right"></i></label><img src="https://sa2.wohlnet.ru/updates/2026_01_02/v2.png"></div>
 
 </body>
 </html>
