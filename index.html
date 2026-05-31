@@ -136,8 +136,9 @@
             To access the site, click the button below, and you will be redirected to the main page.
         </div>
 
-        <div class="btn-info">
-            Redirecting to sa2.wohlnet.ru
+        <!-- Добавлен id для работы скрипта таймера -->
+        <div class="btn-info" id="redirect-btn">
+            Redirecting to sa2.wohlnet.ru in 5s...
         </div>
 
         <a href="https://sa2.wohlnet.ru/" class="btn-green">
@@ -150,6 +151,23 @@
         This is a fan-maintained portal. Not affiliated with any official corporate entities. Provided for community purposes.<br>
         This project is not affiliated with Nexon Co., Ltd. or Nexon GT.
     </footer>
+
+    <!-- Скрипт обратного отсчета и автоматического перенаправления -->
+    <script>
+        let timeLeft = 5;
+        const targetUrl = "https://sa2.wohlnet.ru/";
+        const redirectBtn = document.getElementById('redirect-btn');
+
+        const timerInterval = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                redirectBtn.textContent = `Redirecting to sa2.wohlnet.ru in ${timeLeft}s...`;
+            } else {
+                clearInterval(timerInterval);
+                window.location.href = targetUrl;
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
